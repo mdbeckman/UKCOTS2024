@@ -22,7 +22,9 @@ output:
 - [EMNLP Paper](docs/EMNLP-Paper.pdf): Li, Z., Lloyd, S., Beckman, M. D., & Passonneau, R. J. (2023). Answer-state Recurrent Relational Network (AsRRN) for Constructed Response Assessment and Feedback Grouping.  *Findings of the Association for Computational Linguistics: EMNLP 2023*. https://doi.org/10.18653/v1/2023.findings-emnlp.254
 - [UKCOTS Website (link)](https://www.ukcots.org/)
 
+## Acknowledgment 
 
+- We're grateful to the US National Science Foundation for funding this research (NSF DUE-2236150: Project CLASSIFIES)
 
 ## Contact
 

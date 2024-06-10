@@ -26,19 +26,17 @@ library(tidyverse)
 
 ---
 
-\titlepage
 
-#### Two question survey before seminar (scan with mobile phone) 
-![(QR Code) https://forms.gle/hpW72fMYE1SsB19JA](QR-GForm.png){width=20%}
+# First Slide $\approx$ Whole Talk
 
+>- "short-answer" tasks are good for students, but hard to scale  
+>- Can NLP tools support instructors with student feedback?  
+>    - How much / what kind of support is needed?  
+>    - Are tools reliable enough to actually help instructors?  
+>    - Scalable, personalized feedback: difficult but possible  
+>- NLP tools performed as well a typical teaching team at marking  
+>- Feedback is more complex, and we're currently exploring a few alternatives  
 
-
-# Responses to our survey?
-
-1. Is your lucky/favorite number odd or even?
-2. How did you describe the value of formative assessment?
-    - [Odd] Free text response: *write anything you like*
-    - [Even] Selected response: *endorse provided options*
 
 
 # Motivation
@@ -48,7 +46,8 @@ library(tidyverse)
 - Frequent practice w/ communicating improves statistical literacy and promotes retention (Basu, et al., 2013)
 - Formative assessment benefits both students & instructors (Black & Wiliam, 2009; GAISE, 2016; Pearl, et al., 2012)
 - A majority of U.S. undergraduates at public institutions take at least one large-enrollment STEM course (Supiano, 2022)
-- *Logistics* of constructed response tasks jeopardize use in large-enrollment classes (Garfield & Ben-Zvi, 2008; Woodard & McGowan, 2012)
+- **Logistics of constructed response tasks jeopardize use in large-enrollment classes** (Garfield & Ben-Zvi, 2008; Woodard & McGowan, 2012)
+
 
 # Easy!
 
@@ -62,46 +61,16 @@ library(tidyverse)
 
 
 
-# Goal state
+# Goal
 
-*Computer-assisted formative assessment feedback for short-answer tasks in large-enrollment classes, such that instructor burden is similar to small class (~30 students)*
+*Develop technology that can assist instructors for large (STEM) classes with providing targeted formative assessment feedback to students, such that instructor burden is similar to small class (~30 students)*
 
 ![image created with assistance of DALL·E 2 by Open AI](DALLE Robot Assist.png){width=40%}
 
 <!-- Note: Automate the "copy / paste" workflow -->
 <!-- Note: How good does the machine have to be?? -->
-<!-- Note: as a statistician, I'm always comparing current circumstances of my data to some ideal state (SRS or randomized experiment) and negotiating compromise to achieve most desirable outcomes possible given the circumstances available. It's the same here--we want to create useful FA where there is (almost) none-->
+<!-- Note: as a statistician, I'm always comparing current circumstances of my data to some ideal state and negotiating compromise to achieve most desirable outcomes possible given the circumstances available. It's the same here--we want to create useful FA where there is (almost) none-->
 
-
-# Collaborators (humans)
-
-![](Proj Team3.png)
-
-# Tools (machines)
-
-- Natural language processing (NLP) involves how computers can be programmed to analyze language elements
-- NLP-assisted feedback for educational use:
-    - automated short-answer grading (ASAG) from 2009
-    - essays & long-answer tasks earlier
-- Human-machine collaboration is a promising mechanism to assist rapid, individualized feedback at scale (Basu, 2013)
-- Deep neural networks application since 2016
-- Semantic Feature-Wise Transformation Relation Network (SFRN; Li, Tomar, & Passonneau, 2021)
-    - back-translation data augmentation (French & Chinese)
-    - can accommodate rubrics, expert solutions, or both
-
-
-# SFRN Detail (Li et al., 2021)
-
-\small
-
-SFRN is an end-to-end model with 3 components:
-
-1. encode QRA triples producing vector representations for question (Q), a possible reference (R), and student answer (A)
-2. when relation network includes multiple QRA triples, a learned feature-wise transformation network merges all relation vectors for a student answer into a single relation vector by leveraging attentions calculated by a QRA triple;
-3. the resulting vector representation is passed as an input to a classifier (i.e., neural network) 
-
-![The $g_{\theta}MLP$ function computes the relation vector for each [Q,R,A] triple. A
-set of relation vectors is combined (+) using *SFT*. The $f_{\phi}MLP$ function is the assessment classifier.](SFRN.png){width=70%}
 
 
 
@@ -127,15 +96,6 @@ set of relation vectors is combined (+) using *SFT*. The $f_{\phi}MLP$ function 
 >- **RQ1**: What level of agreement is achieved among trained human raters labeling (i.e., scoring) short-answer tasks?  
 
 
-\vskip 18pt
-
-### Short Paper (ICOTS)
-
-\footnotesize
-
-Lloyd, S. E., Beckman, M., Pearl, D., Passonneau, R., Li, Z., & Wang, Z. (2022). Foundations for AI-Assisted Formative Assessment Feedback for Short-Answer Tasks in Large-Enrollment Classes. In *Proceedings of the eleventh international conference on teaching statistics*. Rosario, Argentina.
-
-
 
 # Research Questions
 
@@ -148,25 +108,53 @@ Lloyd, S. E., Beckman, M., Pearl, D., Passonneau, R., Li, Z., & Wang, Z. (2022).
 
 \vskip 18pt
 
-### Short Paper (ICOTS)
+### Pilot Study
 
 \footnotesize
 
 Lloyd, S. E., Beckman, M., Pearl, D., Passonneau, R., Li, Z., & Wang, Z. (2022). Foundations for AI-Assisted Formative Assessment Feedback for Short-Answer Tasks in Large-Enrollment Classes. In *Proceedings of the eleventh international conference on teaching statistics*. Rosario, Argentina.
 
 
-# Spoilers?!
 
-- **RQ1**: What level of agreement is achieved among trained human raters labeling (i.e., scoring) short-answer tasks?
 
-- **RQ2**: What level of agreement is achieved between human raters and an NLP algorithm?
+# Collaborators 
 
-- **RQ3**: What sort of NLP representation leads to good clustering performance, and how does that interact with the classification algorithm?
+![](Collaborators.png){width=95%}
 
-### *Spoilers?!*
-- RQ1: substantial inter-rater & intra-rater agreement
-- RQ2: substantial agreement among human & NLP labeling
-- RQ3: evidence of productive clustering; more work to do
+
+
+<!-- # Tools (machines) -->
+
+<!-- - Natural language processing (NLP) involves how computers can be programmed to analyze language elements -->
+<!-- - NLP-assisted feedback for educational use: -->
+<!--     - automated short-answer grading (ASAG) from 2009 -->
+<!--     - essays & long-answer tasks earlier -->
+<!-- - Human-machine collaboration is a promising mechanism to assist rapid, individualized feedback at scale (Basu, 2013) -->
+<!-- - Deep neural networks application since 2016 -->
+<!-- - Relational neural networks -->
+
+
+
+<!-- - from Becky: -->
+<!-- - previously developed for computer vision -->
+<!-- - more efficient than transformer networks (e.g., LLMs) -->
+
+
+
+# SFRN Detail (Li et al., 2021)
+
+\small
+
+SFRN is an end-to-end model with 3 components:
+
+1. encode QRA triples producing vector representations for question (Q), a possible reference (R), and student answer (A)
+2. when relation network includes multiple QRA triples, a learned feature-wise transformation network merges all relation vectors for a student answer into a single relation vector by leveraging attentions calculated by a QRA triple;
+3. the resulting vector representation is passed as an input to a classifier (i.e., neural network) 
+
+![The $g_{\theta}MLP$ function computes the relation vector for each [Q,R,A] triple. A
+set of relation vectors is combined (+) using *SFT*. The $f_{\phi}MLP$ function is the assessment classifier.](SFRN.png){width=70%}
+
+
 
 
 # Methods (Sample)
@@ -323,17 +311,6 @@ Experiment with NLP representations
 
 <!-- ![](HIL-deferral.png) -->
 
-# Current Events: Improving on SFRN
-
-- Answer-state Recurrent Relational Network (AsRRN)
-    - Breaks from reliance on linear architecture of SFRN
-    - Allows flexibility to accommodate shared stem with multiple prompts
-    - Better incorporates reference answers corresponding to rubric guidance
-- Contrastive Loss Function
-    - Correct answers are generally alike
-    - Many PC results align with a few common archetypes
-    - Diverse ways to be incorrect
-
 
 # Limitations
 
@@ -344,6 +321,21 @@ Experiment with NLP representations
 - Clustering performance vs semantic meaning
     - clustering is necessary, but not sufficient, for meaningful feedback
     - semantic meaning of NLP clusters not yet rigorously studied
+
+# Current Events
+
+- Answer-state Recurrent Relational Network  
+    - (AsRRN; Li, Lloyd, Beckman, & Passonneau, 2023)  
+    - Breaks from reliance on linear architecture of SFRN
+    - Allows flexibility to accommodate shared stem with multiple prompts
+    - Better incorporates reference answers corresponding to rubric guidance
+
+- Contrastive Loss Function
+    - Correct answers are generally alike
+    - Many PC results align with a few common archetypes
+    - Diverse ways to be incorrect
+
+
 
 # Future Work
 
@@ -430,6 +422,7 @@ AI tools are powerful, but unclear where they're heading without human partnersh
 
 #. Li, Z., Tomar, Y., & Passonneau, R. J. (2021). A Semantic Feature-Wise Transformation Relation Network for Automatic Short Answer Grading. In *Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing*, pp. 6030–6040. Association for Computational Linguistics. <https://aclanthology.org/2021.emnlp-main.487>
 
+#. Li, Z., Lloyd, S., Beckman, M. D., & Passonneau, R. J. (2023). Answer-state Recurrent Relational Network (AsRRN) for Constructed Response Assessment and Feedback Grouping.  *Findings of the Association for Computational Linguistics: EMNLP 2023*. <https://doi.org/10.18653/v1/2023.findings-emnlp.254>
 
 # References (3/3)
 
@@ -466,15 +459,5 @@ Resource Page URL: <https://mdbeckman.github.io/QUT2023/>
 ![](GooglePhotoDeferral.jpeg)
 
 Our approach to HIL would likely not make a recommendation to the human, just basically request help.
-
-
-
-# Venn Diagram Fail
-
-There was extra space on a Methods slide describing how we partitioned the sample to evaluate rater agreement... but DALLE wasn't up to the task.
-
-![Me: "oil painting of Venn diagram for three intersecting sets"; DALLE 2 ...swing and a miss](DALLE venn diagram.png){width=30%}
-
-
 
 
