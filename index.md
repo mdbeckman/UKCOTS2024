@@ -1,6 +1,6 @@
 ---
-title: "UK Conference on Teaching Statistics 2024"
-subtitle: "Royal Statistical Society"
+title: "UK Conference on Teaching Statistics"
+subtitle: "Manchester, England"
 author: |
   | Matthew Beckman
   | Penn State University
@@ -18,7 +18,8 @@ output:
 ## Resources
 
 - [Slides (PDF)](docs/202406-scalable-formative-assessment.pdf)
-- [Short Paper (PDF)](docs/ICOTS-Paper.pdf): Lloyd, S. E., Beckman, M., Pearl, D., Passonneau, R., Li, Z., & Wang, Z. (2022). Foundations for AI-Assisted Formative Assessment Feedback for Short-Answer Tasks in Large-Enrollment Classes. In *Proceedings of the eleventh international conference on teaching statistics*. Rosario, Argentina.
+- [ICOTS Paper (PDF)](docs/ICOTS-Paper.pdf): Lloyd, S. E., Beckman, M., Pearl, D., Passonneau, R., Li, Z., & Wang, Z. (2022). Foundations for AI-Assisted Formative Assessment Feedback for Short-Answer Tasks in Large-Enrollment Classes. In *Proceedings of the eleventh international conference on teaching statistics*. Rosario, Argentina.
+- [EMNLP Paper](docs/EMNLP-Paper.pdf): Li, Z., Lloyd, S., Beckman, M. D., & Passonneau, R. J. (2023). Answer-state Recurrent Relational Network (AsRRN) for Constructed Response Assessment and Feedback Grouping.  *Findings of the Association for Computational Linguistics: EMNLP 2023*. https://doi.org/10.18653/v1/2023.findings-emnlp.254
 - [UKCOTS Website (link)](https://www.ukcots.org/)
 
 
