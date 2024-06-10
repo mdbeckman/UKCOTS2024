@@ -1,2 +1,3 @@
-# YYYY-Seminar
-Materials presented during YYYY [seminar] at [location]
+# 2024-UKCOTS
+
+Materials presented during 2024 UK Conference on Teaching Statistics (Manchester, UK)
