@@ -1,9 +1,9 @@
 ---
-title: "Progress toward NLP-assisted formative assessment feedback"
+title: "Research evaluating NLP tools designed to assist instructors with formative assessment for students in large-enrollment STEM education classes"
 author: |
   | Matthew Beckman
   | Penn State University
-date: "June 23, 2023"
+date: "June 14, 2024"
 
   
 output:
@@ -32,7 +32,6 @@ library(tidyverse)
 ![(QR Code) https://forms.gle/hpW72fMYE1SsB19JA](QR-GForm.png){width=20%}
 
 
-<!-- Discuss Michael Bulmer influence while folks complete this -->
 
 # Responses to our survey?
 
