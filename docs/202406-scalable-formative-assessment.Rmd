@@ -27,15 +27,18 @@ library(tidyverse)
 ---
 
 
-# First Slide $\approx$ Whole Talk
+# Overview
 
 >- "short-answer" tasks are good for students, but hard to scale  
 >- Can NLP tools support instructors with student feedback?  
 >    - How much / what kind of support is needed?  
 >    - Are tools reliable enough to actually help instructors?  
 >    - Scalable, personalized feedback: difficult but possible  
->- NLP tools performed as well a typical teaching team at marking  
->- Feedback is more complex, and we're currently exploring a few alternatives  
+>- Results
+>    - Marking by NLP tool agrees with humans ($\text{QWK} \approx 0.7+$)  
+>    - *Almost* as well as humans agree ($\text{QWK} \approx 0.8+$)  
+>    - Promising Human-Machine partnership ($\approx 0.85+$)  
+>    - We're exploring a several approaches to feedback 
 
 
 
@@ -215,17 +218,17 @@ The set of task-responses were randomly split four ways:
     - evaluation (9%)
 - 10% of data being held in reserve (test)
 
-\vskip 14pt
+<!-- \vskip 14pt -->
 
-SFRN was compared to other NLP algorithms for accuracy using a subset of student responses (Li et al., 2021).
+<!-- SFRN was compared to other NLP algorithms for accuracy using a subset of student responses (Li et al., 2021). -->
 
-- SFRN: Semantic Feature-Wise Transformation Relation Network
-- LSTM: a logistic regression combined with a Long Short-Term Memory for learning vector representations
+<!-- - SFRN: Semantic Feature-Wise Transformation Relation Network -->
+<!-- - LSTM: a logistic regression combined with a Long Short-Term Memory for learning vector representations -->
 
 
 # Results (RQ2)
 
-*Prerequisite--comparing machines:* The SFRN algorithm achieved much higher classification accuracy than LSTM (83% vs. 72%) when judged against human consensus ratings.[^2] 
+<!-- *Prerequisite--comparing machines:* The SFRN algorithm achieved much higher classification accuracy than LSTM (83% vs. 72%) when judged against human consensus ratings.[^2]  -->
 
 **RQ2**: What level of agreement is achieved between human raters and the machine (an NLP algorithm)?
 
@@ -244,7 +247,7 @@ SFRN was compared to other NLP algorithms for accuracy using a subset of student
 
 Reliability interpretation[^3]: 0.6 < substantial < 0.8 < near perfect < 1.0
 
-[^2]: SFRN & LSTM comparison excludes instances when human labels disagree
+<!-- [^2]: SFRN & LSTM comparison excludes instances when human labels disagree -->
 [^3]: Viera & Garrett (2005) 
 
 
