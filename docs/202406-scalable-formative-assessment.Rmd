@@ -24,22 +24,22 @@ library(tidyverse)
 
 
 
----
+
 
 
 # Overview
 
 >- "short-answer" tasks are good for students, but hard to scale  
->- Can NLP tools support instructors with student feedback?  
->    - How much / what kind of support is needed?  
->    - Are tools reliable enough to actually help instructors?  
->    - Scalable, personalized feedback: difficult but possible  
+>- Can NLP tools help instructors give students feedback?  
+>    - Mark & group student responses first   
+>    - Need some basis for comparison  
+>    - What might scalable, personalized feedback look like anyway?  
 >- Results
 >    - Marking by NLP tool agrees with humans ($\text{QWK} \approx 0.7+$)  
 >    - *Almost* as well as humans agree ($\text{QWK} \approx 0.8+$)  
 >    - Promising Human-Machine partnership ($\approx 0.85+$)  
->    - We're exploring a several approaches to feedback 
-
+>    - Clustering is harder to judge so far  
+>    - Examining promising approaches to such feedback derived from learning theory, yet unproven
 
 
 # Motivation
@@ -70,10 +70,6 @@ library(tidyverse)
 
 ![image created with assistance of DALL·E 2 by Open AI](DALLE Robot Assist.png){width=40%}
 
-<!-- Note: Automate the "copy / paste" workflow -->
-<!-- Note: How good does the machine have to be?? -->
-<!-- Note: as a statistician, I'm always comparing current circumstances of my data to some ideal state and negotiating compromise to achieve most desirable outcomes possible given the circumstances available. It's the same here--we want to create useful FA where there is (almost) none-->
-
 
 
 
@@ -89,14 +85,6 @@ library(tidyverse)
 <!-- Note: Automate the "copy / paste" workflow -->
 <!-- Note: How good does the machine have to be?? -->
 <!-- Note: as a statistician, I'm always comparing current circumstances of my data to some ideal state (SRS or randomized experiment) and negotiating compromise to achieve most desirable outcomes possible given the circumstances available. It's the same here--we want to create useful FA where there is (almost) none-->
-
-# Research Questions
-
->- **RQ3**: What sort of NLP representation leads to good clustering performance, and how does that interact with the classification algorithm?  
-
->- **RQ2**: What level of agreement is achieved between human raters and an NLP algorithm?  
-
->- **RQ1**: What level of agreement is achieved among trained human raters labeling (i.e., scoring) short-answer tasks?  
 
 
 
@@ -126,38 +114,6 @@ Lloyd, S. E., Beckman, M., Pearl, D., Passonneau, R., Li, Z., & Wang, Z. (2022).
 
 
 
-<!-- # Tools (machines) -->
-
-<!-- - Natural language processing (NLP) involves how computers can be programmed to analyze language elements -->
-<!-- - NLP-assisted feedback for educational use: -->
-<!--     - automated short-answer grading (ASAG) from 2009 -->
-<!--     - essays & long-answer tasks earlier -->
-<!-- - Human-machine collaboration is a promising mechanism to assist rapid, individualized feedback at scale (Basu, 2013) -->
-<!-- - Deep neural networks application since 2016 -->
-<!-- - Relational neural networks -->
-
-
-
-<!-- - from Becky: -->
-<!-- - previously developed for computer vision -->
-<!-- - more efficient than transformer networks (e.g., LLMs) -->
-
-
-
-# SFRN Detail (Li et al., 2021)
-
-\small
-
-SFRN is an end-to-end model with 3 components:
-
-1. encode QRA triples producing vector representations for question (Q), a possible reference (R), and student answer (A)
-2. when relation network includes multiple QRA triples, a learned feature-wise transformation network merges all relation vectors for a student answer into a single relation vector by leveraging attentions calculated by a QRA triple;
-3. the resulting vector representation is passed as an input to a classifier (i.e., neural network) 
-
-![The $g_{\theta}MLP$ function computes the relation vector for each [Q,R,A] triple. A
-set of relation vectors is combined (+) using *SFT*. The $f_{\phi}MLP$ function is the assessment classifier.](SFRN.png){width=70%}
-
-
 
 
 # Methods (Sample)
@@ -183,8 +139,14 @@ Note: this sample is *not* a single large class at some institution; the availab
 - 3 human raters typical of large-enrollment instruction team
 - entire sample (1,935 students) distributed among the team with sufficient intersection to assess rater agreement
 - 63 student responses in common for each *combination* of raters to quantify agreement (e.g., pairwise, consensus, etc)
-- constraint: sufficient data for *intra-rater* analysis for person that had labeled 178 responses 6-7 years prior
+<!-- - constraint: *intra-rater* analysis for person that had labeled 178 responses ~7 years prior -->
 
+### May 2024 Follow Up Investigation
+
+>- 4 Undergraduate Teaching Assistants marking responses
+>- UTA's are important part of large-enrollment teaching team
+>- Again, 63 student responses 
+>- Only 4 of 6 short-answer tasks 
 
 
 # Results (RQ1)
@@ -196,9 +158,28 @@ Note: this sample is *not* a single large class at some institution; the availab
 | Rater A & Rater C |  QWK = 0.83 |
 | Rater A & Rater D |  QWK = 0.80 |
 | Rater C & Rater D |  QWK = 0.79 |
-| Rater A: 2015 & 2021 |  QWK = 0.88 |
 | Raters A, C, & D |  FK = 0.70 |
 
+<!-- | Rater A: 2015 & 2021 |  QWK = 0.88 | -->
+
+\footnotesize
+
+Reliability interpretation[^1]: 0.6 < substantial < 0.8 < near perfect < 1.0
+
+[^1]: Viera & Garrett (2005) 
+
+# Preliminary Results: May 2024 UTA's
+
+- pairwise agreement with "instructor"
+- consensus
+
+| Comparison     | Reliability | 
+|:---------------|------------:|
+| Rater A & Rater E |  QWK = 0.57 |
+| Rater A & Rater F |  QWK = 0.72 |
+| Rater A & Rater G |  QWK = 0.73 |
+| Rater A & Rater H |  QWK = 0.71 |
+| Raters A, E, F, G, & H |  FK = 0.54 |
 
 \footnotesize
 
@@ -207,33 +188,22 @@ Reliability interpretation[^1]: 0.6 < substantial < 0.8 < near perfect < 1.0
 [^1]: Viera & Garrett (2005) 
 
 
-
 # Methods (RQ2)
 
 The set of task-responses were randomly split four ways:  
 
-- 90% of data for development purposes (train), were partitioned 8:1:1
+- 90% of data for development purposes (training)
     - training (72%), 
-    - development (9%)
+    - development (9%) 
     - evaluation (9%)
-- 10% of data being held in reserve (test)
-
-<!-- \vskip 14pt -->
-
-<!-- SFRN was compared to other NLP algorithms for accuracy using a subset of student responses (Li et al., 2021). -->
-
-<!-- - SFRN: Semantic Feature-Wise Transformation Relation Network -->
-<!-- - LSTM: a logistic regression combined with a Long Short-Term Memory for learning vector representations -->
+- 10% of data held in reserve (test)
 
 
 # Results (RQ2)
 
-<!-- *Prerequisite--comparing machines:* The SFRN algorithm achieved much higher classification accuracy than LSTM (83% vs. 72%) when judged against human consensus ratings.[^2]  -->
 
 **RQ2**: What level of agreement is achieved between human raters and the machine (an NLP algorithm)?
 
-
-#### Human & SFRN agreement:
 
 | Comparison     | Reliability | 
 |:---------------|------------:|
@@ -254,16 +224,23 @@ Reliability interpretation[^3]: 0.6 < substantial < 0.8 < near perfect < 1.0
 
 # Methods (RQ3)
 
-Manual pilot of human-generated clustering
+How similar is feedback provided by trained humans?
 
-- Two reviewers independently evaluated 100 student responses that earned "partial credit" on inference tasks
+- Two reviewers independently evaluated 100 "partial credit" responses
 - Each reviewer provided free-text feedback to each student
 - Verbatim feedback captured for each reviewer and cross-tabulated for analysis. 
 
 Experiment with NLP representations
 
-- retrain k-means & k-mediods clustering to evaluate cluster stability
+- retrain k-means & k-mediods clustering & evaluate stability
 - compare representations with higher & lower dimensionality
+- Alternative: Answer-state Recurrent Relational Network  
+    - (AsRRN; Li, Lloyd, Beckman, & Passonneau, 2023)  
+    - ~~clustering~~ => FB Classifier??
+    - Group students into pre-determined feedback categories
+    - Two reviewers execute manually & compare with AsRRN
+
+
 
 # Results (RQ3 humans)
 
@@ -281,12 +258,17 @@ Experiment with NLP representations
 
 **RQ3**: What sort of NLP representation leads to good clustering performance, and how does that interact with the classification algorithm?
 
-- SFRN learns a high-dimension (D = 512) vector representation on training data.
-- Experiments with K-means and K-medoids clustering showed SFRN produce more consistent clusters when retrained (0.62), in comparison to LSTM *despite 8X higher dimensionality* [^4] 
-<!-- - 3.33 correctness classes per question, on average, is reasonably consistent with human result -->
+- SFRN (D = 512) produced reasonably consistent clusters when retrained (0.62)
 - Highest consistency (0.88; D = 50) was achieved using a matrix factorization method that produces static representations (WTMF; Guo & Diab, 2011)
 
-[^4]: Consistency is measured as the ratio of all pairs of responses in a given class per question that are clustered the same way on two runs (in the same cluster, or not in the same cluster).
+- AsRRN compared to humans (A & B) grouping students by pre-determined feedback categories: 
+
+| Task | Sample Size | A & B  | A & AsRRN | B & AsRRN |
+|:-----|:-----------:|:------:|:---------:|:---------:|
+| 1    |  90         | 0.71   |   0.53    |   0.69    |
+| 2    |  100        | 0.45   |   0.70    |   0.41    |
+
+
 
 
 # Discussion
@@ -295,12 +277,23 @@ Experiment with NLP representations
 
 - **RQ2**: NLP algorithm produced agreement reasonably aligned to results achieved by pairs/groups of trained human raters
 
-- **RQ3**: Classification and clustering have competing incentives for dimensionality; Lower D is better for cluster stability, Higher D better for classification reliability. (SFRN clustering was respectable despite high D, though)
+- **RQ3**: Promising results based on "man-made clusters" but classification and clustering have competing incentives when it comes to dimensionality of NLP vector representations
+    - Lower Dim is generally better for cluster stability   
+    - Higher Dim better for classification reliability  
+    - Exploring Topological Analysis as alternative to clustering
+    - Feedback as a classifier (Li et al., 2023)
 
 
-# Current Events: HIL deferral policy
 
-> Our work is first (that we know of) to impelement controllable, selective prediction deferral policy
+<!-- ![](HIL-deferral.png) -->
+
+
+# Current Events: Refining our algorithm
+
+
+# Current Events: Human-Machine Partnership
+
+> Our work is first (that we know of) to impelement controllable, selective prediction deferral policy for the classifier (i.e., marking) step
 
 | Threshold     | Deferral Rate  |  Simulated HIL Accuracy | 
 |:-------------:|:--------------:|:------------------:|
@@ -312,82 +305,18 @@ Experiment with NLP representations
 | 0.95          |  0.418         | 0.931            |
 
 
-<!-- ![](HIL-deferral.png) -->
+# Current Events: Ongoing Data Collection
 
-
-# Limitations
-
-- Study uses extant data from prior study collected from many classes of varying size
-    - not a single large class 
-    - no covariates available to identify and mitigate bias labeling (human or machine)
-    - Tasks & rubrics used for pilot were developed for research purposes; likely more polished than tasks developed "in the wild"
-- Clustering performance vs semantic meaning
-    - clustering is necessary, but not sufficient, for meaningful feedback
-    - semantic meaning of NLP clusters not yet rigorously studied
-
-# Current Events
-
-- Answer-state Recurrent Relational Network  
-    - (AsRRN; Li, Lloyd, Beckman, & Passonneau, 2023)  
-    - Breaks from reliance on linear architecture of SFRN
-    - Allows flexibility to accommodate shared stem with multiple prompts
-    - Better incorporates reference answers corresponding to rubric guidance
-
-- Contrastive Loss Function
-    - Correct answers are generally alike
-    - Many PC results align with a few common archetypes
-    - Diverse ways to be incorrect
-
-
-
-# Future Work
-
-Software development goals: 
-
-- challenge labeling algorithm with linguistic diversity;
-- iterative instructor input to group conceptual representations
-- Curse of dimensionality
-    - distance between elements to be clustered increases monotonically with dimensionality (Bellman, 2003)
-    - SRFN is a fairly high dimensional representation (D = 512)
-    - tension between demands of classification and clustering tasks
-    
-Field test expansion: 
-
-- field test key aspects of project CLASSIFIES in large classes 
-    - approx 13,000 students
-    - 2 of 5 institutions are HSI's
-- diversify item and rubric input to challenge performance
-
-
-
-# Additional Implications
-
-- open questions for "what works" in formative assessment
-- accumulated data made available to broader NLP community
+- challenge system with diverse tasks, institutions, student populations; 
+    - several large intro statistics classes in U.S. (ISU, MSU, PSU, UCSB, UF, UTEP)
+    - two "consensus" tasks implemented by all
+    - 2-3 local tasks at each institution 
+- accumulated data to be shared with broader NLP community
     - this data set would be among the largest open data sources of it's kind
     - addresses barriers imposed by proprietary data sources on NLP research
 
+<!-- - approx XX,XXX responses from 13,000 students -->
 
-# Breaking News
-
-![New report on AI and the future of teaching and learning from US Dept of Education, Office of Educational Technology (May 2023)[^6] ](US-DOE-AI4Ed.png)
-
-
-[^6]: U.S. Department of Education, Office of Educational Technology (2023). *Artificial Intelligence and Future of Teaching and Learning: Insights and Recommendations.* Washington, DC.
-
-
-
-# Recommendations from US Dept of Educaiton[^6]
-
-![](US-DOE-recommendations.png){ width=95% }
-
-
-
-# 
-
-AI tools are powerful, but unclear where they're heading without human partnership.  While our results are still quite preliminary, we think human-in-the-loop is a promising avenue toward scalable short-answer formative assessment.
-
-![image created with assistance of DALL·E 2 by Open AI prompted to illustrate a roadmap for the future of educational research](DALLE roadmap.png){ width=55% }
 
 # Acknowledgment
 
@@ -449,7 +378,40 @@ AI tools are powerful, but unclear where they're heading without human partnersh
 \titlepage
 
 
-Resource Page URL: <https://mdbeckman.github.io/QUT2023/>
+Resource Page URL: <https://mdbeckman.github.io/UKCOTS2024/>
+
+
+# NLP for Educational Use 
+
+- Natural language processing (NLP) involves how computers can be programmed to analyze language elements
+- NLP-assisted feedback for educational use:
+    - automated short-answer grading (ASAG) from 2009
+    - essays & long-answer tasks earlier
+- Human-machine collaboration is a promising mechanism to assist rapid, individualized feedback at scale (Basu, 2013)
+- Deep neural networks application since 2016
+- Relational (neural) networks
+
+
+<!-- - from Becky: -->
+<!-- - previously developed for computer vision -->
+<!-- - more efficient than transformer networks (e.g., LLMs) -->
+
+
+
+# SFRN Detail (Li et al., 2021)
+
+\small
+
+SFRN is an end-to-end model with 3 components:
+
+1. encode QRA triples producing vector representations for question (Q), a possible reference (R), and student answer (A)
+2. when relation network includes multiple QRA triples, a learned feature-wise transformation network merges all relation vectors for a student answer into a single relation vector by leveraging attentions calculated by a QRA triple;
+3. the resulting vector representation is passed as an input to a classifier (i.e., neural network) 
+
+![The $g_{\theta}MLP$ function computes the relation vector for each [Q,R,A] triple. A
+set of relation vectors is combined (+) using *SFT*. The $f_{\phi}MLP$ function is the assessment classifier.](SFRN.png){width=70%}
+
+
 
 
 # Google Photos Illustration
