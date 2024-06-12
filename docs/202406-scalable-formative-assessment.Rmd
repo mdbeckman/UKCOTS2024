@@ -220,25 +220,52 @@ Reliability interpretation[^3]: 0.6 < substantial < 0.8 < near perfect < 1.0
 <!-- [^2]: SFRN & LSTM comparison excludes instances when human labels disagree -->
 [^3]: Viera & Garrett (2005) 
 
+# Human-Machine Partnership Method
+
+Want to evaluate accuracy of marking algorithm when designed to "defer" to human judgment
+
+- algorithm evaluates a probability for each label (EC, PC, IC)
+    - if a label has high probability, use algorithm label
+    - if no label has sufficiently high probability, defer to human
+- interests 
+    - estimate how frequently the algorithm defers 
+    - estimate accuracy of the combined process
+
+# Human-Machine Partnership Results
+
+> Our work is first (that we know of) to impelement controllable, selective prediction deferral policy for the classifier (i.e., marking) step
+
+| Threshold     | Deferral Rate  |  Simulated HIL Accuracy | 
+|:-------------:|:--------------:|:------------------:|
+| 0.68          |  0.095         | 0.855            |
+| 0.75          |  0.132         | 0.861            |
+| 0.80          |  0.160         | 0.871            |
+| 0.85          |  0.202         | 0.884            |
+| **0.90**      |  **0.256**     | **0.899**        |
+| 0.95          |  0.418         | 0.931            |
+
 
 
 # Methods (RQ3)
 
 How similar is feedback provided by trained humans?
 
-- Two reviewers independently evaluated 100 "partial credit" responses
-- Each reviewer provided free-text feedback to each student
-- Verbatim feedback captured for each reviewer and cross-tabulated for analysis. 
+- Experiment #1: Humans
+    - Two reviewers independently evaluated 100 "partial credit" responses
+    - Each reviewer provided free-text feedback to each student
+    - Verbatim feedback captured for each reviewer and cross-tabulated for analysis. 
+    
 
-Experiment with NLP representations
+- Experiment #1: NLP Tools
+    - retrain k-means & k-mediods clustering & evaluate stability
+    - compare representations with higher & lower dimensionality
 
-- retrain k-means & k-mediods clustering & evaluate stability
-- compare representations with higher & lower dimensionality
-- Alternative: Answer-state Recurrent Relational Network  
-    - (AsRRN; Li, Lloyd, Beckman, & Passonneau, 2023)  
-    - ~~clustering~~ => FB Classifier??
-    - Group students into pre-determined feedback categories
-    - Two reviewers execute manually & compare with AsRRN
+- Experiment #2
+    - if feedback labels are pre-determined, how consistently are they applied?
+    - (i.e., ~~clustering~~ => FB Classifier??)
+    - Both Humans & NLP Tools attempt
+    - New tool "AsRRN" (Li, Lloyd, Beckman, & Passonneau, 2023)  
+
 
 
 
@@ -276,6 +303,7 @@ Experiment with NLP representations
 - **RQ1**: Substantial agreement achieved among trained human raters provides context for further comparisons
 
 - **RQ2**: NLP algorithm produced agreement reasonably aligned to results achieved by pairs/groups of trained human raters
+    - Human-in-the-Loop >> Instructor / Algorithm partnership
 
 - **RQ3**: Promising results based on "man-made clusters" but classification and clustering have competing incentives when it comes to dimensionality of NLP vector representations
     - Lower Dim is generally better for cluster stability   
@@ -286,23 +314,6 @@ Experiment with NLP representations
 
 
 <!-- ![](HIL-deferral.png) -->
-
-
-# Current Events: Refining our algorithm
-
-
-# Current Events: Human-Machine Partnership
-
-> Our work is first (that we know of) to impelement controllable, selective prediction deferral policy for the classifier (i.e., marking) step
-
-| Threshold     | Deferral Rate  |  Simulated HIL Accuracy | 
-|:-------------:|:--------------:|:------------------:|
-| 0.68          |  0.095         | 0.855            |
-| 0.75          |  0.132         | 0.861            |
-| 0.80          |  0.160         | 0.871            |
-| 0.85          |  0.202         | 0.884            |
-| **0.90**      |  **0.256**     | **0.899**        |
-| 0.95          |  0.418         | 0.931            |
 
 
 # Current Events: Ongoing Data Collection
@@ -396,6 +407,10 @@ Resource Page URL: <https://mdbeckman.github.io/UKCOTS2024/>
 <!-- - previously developed for computer vision -->
 <!-- - more efficient than transformer networks (e.g., LLMs) -->
 
+
+# Credit: Becky Passonneau
+
+![](RelationalNetwork_RJP.png)
 
 
 # SFRN Detail (Li et al., 2021)
