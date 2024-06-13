@@ -136,18 +136,19 @@ Note: this sample is *not* a single large class at some institution; the availab
 
 # Methods (RQ1)
 
-- 3 human raters typical of large-enrollment instruction team
-- entire sample (1,935 students) distributed among the team with sufficient intersection to assess rater agreement
-- 63 student responses in common for each *combination* of raters to quantify agreement (e.g., pairwise, consensus, etc)
+- 3 raters typical of large-enrollment instruction team
+- entire sample (1,935 students) distributed among the team 
+- sufficient intersection to assess inter-rater agreement 
 <!-- - constraint: *intra-rater* analysis for person that had labeled 178 responses ~7 years prior -->
 
 ### May 2024 Follow Up Investigation
 
->- 4 Undergraduate Teaching Assistants marking responses
+>- 4 Undergraduate Teaching Assistants join team
 >- UTA's are important part of large-enrollment teaching team
->- Again, 63 student responses 
->- Only 4 of 6 short-answer tasks 
+>- 4 short-answer tasks 
 
+
+![](SU24_Team.png){width=100%}
 
 # Results (RQ1)
 
