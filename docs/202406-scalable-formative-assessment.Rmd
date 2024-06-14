@@ -3,7 +3,11 @@ title: "Research evaluating NLP tools designed to assist instructors with format
 author: |
   | Matthew Beckman
   | Penn State University
-date: "June 14, 2024"
+date: | 
+  | June 14, 2024
+  | 
+  | 
+  | Slides: mdbeckman.github.io/UKCOTS2024/
 
   
 output:
@@ -29,17 +33,17 @@ library(tidyverse)
 
 # Overview
 
->- "short-answer" tasks are good for students, but hard to scale  
->- Can NLP tools help instructors give students feedback?  
->    - Mark & group student responses first   
->    - Need some basis for comparison  
->    - What might scalable, personalized feedback look like anyway?  
+- "short-answer" tasks are good for students, but hard to scale  
+- Can NLP tools help instructors give students feedback?  
+    - Mark & group student responses first   
+    - Need some basis for comparison  
+    - What might scalable, personalized feedback look like anyway?  
+
 >- Results
->    - Marking by NLP tool agrees with humans ($\text{QWK} \approx 0.7+$)  
->    - *Almost* as well as humans agree ($\text{QWK} \approx 0.8+$)  
->    - Promising Human-Machine partnership ($\approx 0.85+$)  
->    - Clustering is harder to judge so far  
->    - Examining promising approaches to such feedback derived from learning theory, yet unproven
+>    - Marking by our NLP algorithm agrees with humans ($\text{QWK} \approx 0.7+$)  
+>    - As well as humans agree ($\text{QWK} \approx 0.7 \text{ to } 0.8+$)  
+>    - Human-Algorithm partnership may be even better ($\approx 0.85+$)  
+>    - More work to be done with grouping & feedback  
 
 
 # Motivation
@@ -137,15 +141,16 @@ Note: this sample is *not* a single large class at some institution; the availab
 # Methods (RQ1)
 
 - 3 raters typical of large-enrollment instruction team
-- entire sample (1,935 students) distributed among the team 
+- (6 tasks) x (1,935 students) distributed among the team
 - sufficient intersection to assess inter-rater agreement 
+- responses judged Correct / Partial / Incorrect against rubric
 <!-- - constraint: *intra-rater* analysis for person that had labeled 178 responses ~7 years prior -->
 
 ### May 2024 Follow Up Investigation
 
 >- 4 Undergraduate Teaching Assistants join team
 >- UTA's are important part of large-enrollment teaching team
->- 4 short-answer tasks 
+>- (4 tasks) x (63 students) scored by each UTA 
 
 
 ![](SU24_Team.png){width=100%}
@@ -159,7 +164,7 @@ Note: this sample is *not* a single large class at some institution; the availab
 | Rater A & Rater C |  QWK = 0.83 |
 | Rater A & Rater D |  QWK = 0.80 |
 | Rater C & Rater D |  QWK = 0.79 |
-| Raters A, C, & D |  FK = 0.70 |
+<!-- | Raters A, C, & D |  FK = 0.70 | -->
 
 <!-- | Rater A: 2015 & 2021 |  QWK = 0.88 | -->
 
@@ -171,8 +176,8 @@ Reliability interpretation[^1]: 0.6 < substantial < 0.8 < near perfect < 1.0
 
 # Preliminary Results: May 2024 UTA's
 
-- pairwise agreement with "instructor"
-- consensus
+- pairwise agreement with "instructor" (rater A)
+- consensus among the 5 raters
 
 | Comparison     | Reliability | 
 |:---------------|------------:|
@@ -180,13 +185,11 @@ Reliability interpretation[^1]: 0.6 < substantial < 0.8 < near perfect < 1.0
 | Rater A & Rater F |  QWK = 0.72 |
 | Rater A & Rater G |  QWK = 0.73 |
 | Rater A & Rater H |  QWK = 0.71 |
-| Raters A, E, F, G, & H |  FK = 0.54 |
+<!-- | Raters A, E, F, G, & H |  FK = 0.54 | -->
 
 \footnotesize
 
 Reliability interpretation[^1]: 0.6 < substantial < 0.8 < near perfect < 1.0
-
-[^1]: Viera & Garrett (2005) 
 
 
 # Methods (RQ2)
@@ -211,15 +214,14 @@ The set of task-responses were randomly split four ways:
 | Rater A & SFRN |  QWK = 0.79 |
 | Rater C & SFRN |  QWK = 0.82 |
 | Rater D & SFRN |  QWK = 0.74 |
-| Raters: A, C, D, & SFRN |  FK = 0.68 |
+<!-- | Raters: A, C, D, & SFRN |  FK = 0.68 | -->
 
 
 \footnotesize
 
-Reliability interpretation[^3]: 0.6 < substantial < 0.8 < near perfect < 1.0
+Reliability interpretation[^1]: 0.6 < substantial < 0.8 < near perfect < 1.0
 
 <!-- [^2]: SFRN & LSTM comparison excludes instances when human labels disagree -->
-[^3]: Viera & Garrett (2005) 
 
 # Human-Machine Partnership Method
 
@@ -390,7 +392,7 @@ How similar is feedback provided by trained humans?
 \titlepage
 
 
-Resource Page URL: <https://mdbeckman.github.io/UKCOTS2024/>
+
 
 
 # NLP for Educational Use 
