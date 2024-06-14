@@ -148,9 +148,9 @@ Note: this sample is *not* a single large class at some institution; the availab
 
 ### May 2024 Follow Up Investigation
 
->- 4 Undergraduate Teaching Assistants join team
->- UTA's are important part of large-enrollment teaching team
->- (4 tasks) x (63 students) scored by each UTA 
+- 4 Undergraduate Teaching Assistants join team
+- UTA's are important part of large-enrollment teaching team
+- (4 tasks) x (63 students) scored by each UTA 
 
 
 ![](SU24_Team.png){width=100%}
